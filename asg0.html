@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset = "UTF-8">
+        <title>Draw a blue rectangle (canvas version)</title>
+        <script src="lib/cuon-matrix-cse160.js"></script>
+    </head>
+    <body onload="main()">
+        <canvas id = "example" width = "400" height="400">
+            Please use a browser that supports "canvas"
+        </canvas>
+        <form>
+            <label for="inputField">v1: x</label>
+            <input type="number" id="inputField1" name="inputField">
+
+            <label for="inputField2">y</label>
+            <input type="number" id="inputField2" name="inputField2"><br><br>
+
+            <label for="inputField3">v2: x</label>
+            <input type ="number" id= "inputField3" name="inputField3">
+
+            <label for="inputField4">y</label>
+            <input type="number" id="inputField4" name="inputField4"><br><br>
+
+            <button type="button" onclick="handleDrawEvent()">Draw</button><br><br>
+        
+            <label for="operation" style="font-size: 20px;">Operation:</label>
+            <select id="operation" name="operation">
+                <option value="add">Add</option>
+                <option value="subtract">Subtraction</option>
+                <option value ="multiply">Multiplication</option>
+                <option value="divide" >Divide</option>
+                <option value="magnitude">Magnitude</option>
+                <option value="normalize">Normalize</option>
+                <option value="angleBetween">Angle between</option>
+                <option value="area">Area</option>
+            </select>
+
+            <label for="inputField5" style="font-size: 20px;" >Scalar</label>
+            <input type="number" id ="inputField5" name="inputField5"> <br><br>
+
+            <button type="button" onclick="handleDrawOperationEvent()">Draw</button><br><br>
+        </form>
+        <script src = "asg0.js"></script>
+    </body>
+</html>
