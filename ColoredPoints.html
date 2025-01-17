@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Change a point color</title>
+    </style>
+  </head>
+
+  <body onload="main()">
+    <div>
+    <canvas id="webgl" width="400" height="400">
+    Please use a browser that supports "canvas"
+    </canvas>
+    <img id="image" src="C:\Users\liliath\Pictures\IMG_20250113_140837.jpg" alt = "Picture of Drawing" width="400" height="400">
+      
+    </div>
+
+    <p>
+
+    <p id="numdot" >  
+    </p>
+    
+ 
+    <button type = "button" id="clearButton">Clear</button>
+    <button type ="button" id ="drawPictureButton">Draw My Picture</button>
+    <p>
+    <label for="">Color Buttons:</label>
+    <p>
+    <button type ="button" id = "green" >Green</button>
+    <button type="button" id ="red">Red</button>
+    </p>
+    <label for="" >Shapes:</label>
+    <p>
+    <button type="button" id="pointButton">Point</button>
+    <button type="button" id="triButton">Triangle</button>
+    <button type="button" id="circleButton">Circle</button>
+    <button type="button" id="catBrushButton">Cat</button>
+    <p>
+    <label for="">Color Sliders</label>
+    <p>
+      Red: <input type="range" min="0" max="100" class="slider" id="redSlide" >
+    <p>
+      Green: <input type="range" min="0" max="100" class="slider" id="greenSlide" >
+    <p>
+      Blue: <input type="range" min="0" max="100" class="slider" id="blueSlide" >
+
+    <p>
+    <label for="">Size Slider:</label>
+    <p>
+       <input type ="range" min ="1" max="40" value="0" class="slider" id="sizeSlide">
+    <p>
+    <label for="segmentSlide">(Circle) Segment Slider:</label>
+    <p>
+      <input type ="range" min ="3" max="50" value="10" class="slider" id="segmentSlide">
+    <p>
+    
+
+    <script src="lib/webgl-utils.js"></script>
+    <script src="lib/webgl-debug.js"></script>
+    <script src="lib/cuon-utils.js"></script>
+    <script src="ColoredPoints.js"></script>
+    <script src="Point.js"></script>
+    <script src="Triangle.js"></script>
+    <script src="Circle.js"></script>
+    <script src="Cat.js"></script>
+  </body>
+</html>
