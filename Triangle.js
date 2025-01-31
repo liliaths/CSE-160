@@ -5,28 +5,46 @@ class Triangle{
     this.color = [1.0, 1.0, 1.0, 1.0];
     this.size = 5.0;
 
-    this.buffer = null;
-    this.vertices = null
+    this.buffer = gl.createBuffer();
+    if (!this.buffer) {
+      console.log('Failed to create the buffer object');
+      return;
+    }
+
+    // Pre-allocate the typed array
+    this.vertices = new Float32Array(9);
     
   }
 
   render() {
     var xy = this.position;
     var rgba = this.color;
-    var size = this.size;
+    var d = this.size/200.0;
 
-    //Pass the position of a point to a_Position variable
-    gl.vertexAttrib3f(a_Position, xy[0], xy[1], 0.0);
+    // Update vertices data
+    this.vertices[0] = xy[0];     // First vertex x
+    this.vertices[1] = xy[1];     // First vertex y
+    this.vertices[2] = 0;         // First vertex z
+    this.vertices[3] = xy[0] + d; // Second vertex x
+    this.vertices[4] = xy[1];     // Second vertex y 
+    this.vertices[5] = 0;         // Second vertex z
+    this.vertices[6] = xy[0];     // Third vertex x
+    this.vertices[7] = xy[1] + d; // Third vertex y
+    this.vertices[8] = 0;         // Third vertex z
 
-    //Pass color of point to u_FragColor variable
+    // Reuse the existing buffer
+    gl.bindBuffer(gl.ARRAY_BUFFER, this.buffer);
+    gl.bufferData(gl.ARRAY_BUFFER, this.vertices, gl.DYNAMIC_DRAW);
+
+    // Set vertex attribute
+    gl.vertexAttribPointer(a_Position, 3, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(a_Position);
+
+    // Set color
     gl.uniform4f(u_FragColor, rgba[0], rgba[1], rgba[2], rgba[3]);
 
-    //Pass size of a point to u_Size variable
-    gl.uniform1f(u_Size, size);
-
-    //Draw
-    var d = this.size/200.0; 
-    drawTriangle( [xy[0], xy[1], xy[0]+d, xy[1], xy[0], xy[1]+d] );
+    // Draw
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
   }
 }
 
