@@ -4,6 +4,10 @@ class Triangle{
     this.position = [0.0, 0.0, 0.0];
     this.color = [1.0, 1.0, 1.0, 1.0];
     this.size = 5.0;
+
+    this.buffer = null;
+    this.vertices = null
+    
   }
 
   render() {
@@ -21,15 +25,13 @@ class Triangle{
     gl.uniform1f(u_Size, size);
 
     //Draw
-    var d = this.size/200.0; //delta
+    var d = this.size/200.0; 
     drawTriangle( [xy[0], xy[1], xy[0]+d, xy[1], xy[0], xy[1]+d] );
   }
 }
 
-function drawTriangle(vertices) {
- // var vertices = new Float32Array([
-  //  0, 0.5,   -0.5, -0.5,   0.5, -0.5
-  //]);
+function drawTriangle3D(vertices) {
+
   var n = 3; // The number of vertices
 
   // Create a buffer object
@@ -46,11 +48,13 @@ function drawTriangle(vertices) {
 
 
   // Assign the buffer object to a_Position variable
-  gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 0);
+  gl.vertexAttribPointer(a_Position, 3, gl.FLOAT, false, 0, 0);
 
   // Enable the assignment to a_Position variable
   gl.enableVertexAttribArray(a_Position);
   
   gl.drawArrays(gl.TRIANGLES, 0, n);
-  //return n;
+
 }
+
+
