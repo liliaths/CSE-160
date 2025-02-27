@@ -628,7 +628,7 @@ function keydown(ev) {
 
 function initCamera() {
   g_camera = new Camera();
-  g_camera.map = g_map;
+  //g_camera.map = g_map;
 }
 
 
