@@ -18,37 +18,10 @@ class Camera {
 
     this.projectionMatrix.setPerspective(this.fov, canvas.width/canvas.height, .1, 1000);
 
-    this.map = g_map;
+ 
   }
 
-  isLookingThroughWall(eye, at) {
-    let mapX = Math.floor((eye[0] + (this.map.length/2) * 10) / 10);
-    let mapZ = Math.floor((eye[2] + (this.map[0].length/2) * 10) / 10);
 
-    if (mapX >= 0 && mapX < this.map.length && 
-        mapZ >= 0 && mapZ < this.map[0].length) {
-        if (this.map[mapX][mapZ] === 1) {
-            return true;
-        }
-    }
-
-    let direction = new Vector3([
-        at[0] - eye[0],
-        0,  
-        at[2] - eye[2]
-    ]);
-    direction.normalize();
-
-    let nextX = Math.floor(((eye[0] + direction.elements[0]) + (this.map.length/2) * 10) / 10);
-    let nextZ = Math.floor(((eye[2] + direction.elements[2]) + (this.map[0].length/2) * 10) / 10);
-    
-    if (nextX >= 0 && nextX < this.map.length && 
-        nextZ >= 0 && nextZ < this.map[0].length) {
-        return this.map[nextX][nextZ] === 1;
-    }
-    
-    return false;
-}
 
   updateViewMatrix() {
     this.viewMatrix.setLookAt(
@@ -66,7 +39,6 @@ moveForward(distance) {
     ]);
     direction.normalize();
 
-
     let newEye = [
         this.eye.elements[0] + direction.elements[0] * distance,
         this.eye.elements[1],
@@ -79,13 +51,12 @@ moveForward(distance) {
         newEye[2] + (this.at.elements[2] - this.eye.elements[2])
     ];
 
-    if (!this.isLookingThroughWall(newEye, newAt)) {
-        this.eye = new Vector3(newEye);
-        this.at = new Vector3(newAt);
-        this.updateViewMatrix();
-    }
-}
 
+    this.eye = new Vector3(newEye);
+    this.at = new Vector3(newAt);
+    
+    this.updateViewMatrix();
+}
 
 moveBackward(distance) {
     let direction = new Vector3([
@@ -107,11 +78,10 @@ moveBackward(distance) {
         newEye[2] + (this.at.elements[2] - this.eye.elements[2])
     ];
 
-    if (!this.isLookingThroughWall(newEye, newAt)) {
-        this.eye = new Vector3(newEye);
-        this.at = new Vector3(newAt);
-        this.updateViewMatrix();
-    }
+    this.eye = new Vector3(newEye);
+    this.at = new Vector3(newAt);
+    
+    this.updateViewMatrix();
 }
 
   moveLeft(speed) {
@@ -138,11 +108,11 @@ moveBackward(distance) {
         this.at.elements[2] - r.elements[2] * speed
     ];
 
-    if (!this.isLookingThroughWall(newEye, newAt)) {
-        this.eye = new Vector3(newEye);
-        this.at = new Vector3(newAt);
-        this.updateViewMatrix();
-    }
+    this.eye = new Vector3(newEye);
+    this.at = new Vector3(newAt);
+    
+    this.updateViewMatrix();
+
   }
 
   moveRight(speed) {
@@ -169,11 +139,12 @@ moveBackward(distance) {
         this.at.elements[2] + r.elements[2] * speed
     ];
 
-    if (!this.isLookingThroughWall(newEye, newAt)) {
-        this.eye = new Vector3(newEye);
-        this.at = new Vector3(newAt);
-        this.updateViewMatrix();
-    }
+    this.eye = new Vector3(newEye);
+    this.at = new Vector3(newAt);
+    
+    this.updateViewMatrix();
+
+
   }
 
   panLeft(alpha) {
@@ -195,10 +166,9 @@ moveBackward(distance) {
         this.eye.elements[2] + newF.elements[2]
     ];
 
-    if (!this.isLookingThroughWall(this.eye.elements, newAt)) {
-        this.at = new Vector3(newAt);
-        this.updateViewMatrix();
-    }
+    this.at = new Vector3(newAt);
+    this.updateViewMatrix();
+
   }
 
   panRight(alpha) {
@@ -219,10 +189,8 @@ moveBackward(distance) {
         this.eye.elements[2] + newF.elements[2]
     ];
 
-    if (!this.isLookingThroughWall(this.eye.elements, newAt)) {
-        this.at = new Vector3(newAt);
-        this.updateViewMatrix();
-    }
+    this.at = new Vector3(newAt);
+    this.updateViewMatrix();
   }
 
   panUp(alpha) {
@@ -247,10 +215,9 @@ moveBackward(distance) {
         this.eye.elements[2] + newF.elements[2]
     ];
 
-    if (!this.isLookingThroughWall(this.eye.elements, newAt)) {
-        this.at = new Vector3(newAt);
-        this.updateViewMatrix();
-    }
+    this.at = new Vector3(newAt);
+    this.updateViewMatrix();
+
   }
 
   panDown(alpha) {
@@ -275,10 +242,8 @@ moveBackward(distance) {
         this.eye.elements[2] + newF.elements[2]
     ];
 
-    if (!this.isLookingThroughWall(this.eye.elements, newAt)) {
-        this.at = new Vector3(newAt);
-        this.updateViewMatrix();
-    }
+    this.at = new Vector3(newAt);
+    this.updateViewMatrix();
   }
 
 

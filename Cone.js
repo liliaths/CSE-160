@@ -4,6 +4,7 @@ class Cone {
     this.color = [1.0, 1.0, 1.0, 1.0];
     this.matrix = new Matrix4();
     this.segments = 12; 
+    
   }
 
   render() {
