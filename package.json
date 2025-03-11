@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "three": "^0.174.0"
+  },
+  "name": "asg5",
+  "version": "1.0.0",
+  "main": "Asgn5.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
